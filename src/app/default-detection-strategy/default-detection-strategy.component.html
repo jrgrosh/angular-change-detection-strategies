@@ -1,0 +1,20 @@
+<div class="padded">
+    <div class="align-items">
+        <div>Default Detection</div>
+        <div>
+            {{dataObj.a}},{{dataObj.b}},{{dataObj.c}}
+        </div>
+        <button (click)="incrementC()"> Increment C</button>
+    </div>
+
+    <div class="justify-content">
+        <span *ngFor="let descendant of descendantTree">
+            <span *ngIf="descendant['strategy']==='default'">
+                <app-default-detection-strategy [dataObj]="dataObj" [descendantTree]="descendant['descendantTree']"></app-default-detection-strategy>
+            </span>
+            <span *ngIf="descendant['strategy']==='onPush'">
+                <app-on-push [dataObj]="dataObj" [descendantTree]="descendant['descendantTree']"></app-on-push>
+            </span>        
+        </span>
+    </div>
+</div>

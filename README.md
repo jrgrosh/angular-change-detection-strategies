@@ -1,27 +1,19 @@
-# ChangeDetectionApp
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Change Detection Strategies
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This application demonstrates the difference between the default change detection strategy and the onpush change detection strategy.
 
-## Build
+From Angular's documentation:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+>OnPush change detection instructs Angular to run change detection for a component subtree only when:
 
-## Running unit tests
+> The root component of the subtree receives new inputs as the result of a template binding. Angular compares the current and past value of the input with ==
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+>Angular handles an event (for example using event binding, output binding, or @HostListener ) in the subtree's root component or any of its children whether they are using OnPush change detection or not.
 
-## Running end-to-end tests
+One can see how changes to the underlying data model, dataObj, are communicated through the component tree. The root component and default components with default component ancestors are immediately informed of changes to dataObj via changes from setInterval, subscription events, and button clicks. OnPush components are only informed of changes to the data model when an event happens in themselves or a descendant component. 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Play around with the app to get a feel for yourself of how the different change detection strategies in Angular work.
